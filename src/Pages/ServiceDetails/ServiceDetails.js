@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import moment from "moment/moment";
+import { toast } from "react-toastify";
+import UserReview from "../UserReview/UserReview";
 
 const ServiceDetails = () => {
   const service = useLoaderData();
   const { _id, title, image, description } = service;
   const currentDate = moment().format("MMMM Do YYYY, h:mm:ss a");
+  const [comments, setComments] = useState([]);
   //   var newDate = new Date();
   //   const day = newDate.getDate();
   //   const month = newDate.getMonth();
@@ -24,7 +27,22 @@ const ServiceDetails = () => {
 
   //   console.log(currentDate);
   //   console.log(moment().format("DD-MM-YYYY hh:mm:ss"));
+  //   useEffect(() => {
+  //     fetch(`http://localhost:5000/reviews?service=${_id}`);
+  //   }, [_id])
+  //     .then((res) => res.json())
+  //     .then((data) => console.log(data));
 
+  useEffect(() => {
+    fetch(`http://localhost:5000/all-reviews?sId=${_id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.result) {
+          setComments(data.result);
+        }
+      });
+  }, [_id]);
+  console.log(comments);
   const handleSubmitComment = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -46,12 +64,19 @@ const ServiceDetails = () => {
         "content-type": "application/json",
       },
       body: JSON.stringify(review),
-    });
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.acknowledged) {
+          toast.success("Review Created", { autoClose: 1500 });
+        }
+      });
     // console.log("comment will be like this: ", review);
   };
   return (
     <div className="w-[90%] mx-auto">
-      <h1>This is a service details page of ${_id}</h1>
+      <h1>This is a service details page of {_id}</h1>
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
         <div className="border-2 border-pink-400 lg:col-span-8">
           <div className="card card-compact w-full bg-base-100 shadow-xl rounded-none">
@@ -111,7 +136,11 @@ const ServiceDetails = () => {
               </form>
             </div>
             <div>
-              <h1>Comment Visible</h1>
+              <h1>Patient Review </h1>
+
+              {comments.map((cmt) => (
+                <UserReview key={cmt._id} cmt={cmt}></UserReview>
+              ))}
             </div>
           </div>
         </div>
