@@ -60,12 +60,16 @@ const ServiceDetails = () => {
       });
     // console.log("comment will be like this: ", review);
   };
-  const user = false;
+  const user = true;
   return (
     <div className="w-[90%] mx-auto">
-      <h1>This is a service details page of {_id}</h1>
+      <div className="flex w-full bg-gradient-to-tr from-blue-400 to-pink-400 rounded-md  h-40 justify-center items-center my-5">
+        <h1 className="font-bold text-2xl md:text-3xl text-white text-center">
+          This is a service details page of {title}
+        </h1>
+      </div>
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
-        <div className="border-2 border-pink-400 lg:col-span-8">
+        <div className="border-2  lg:col-span-7">
           <div className="card card-compact w-full bg-base-100 shadow-xl rounded-none">
             <figure className="rounded-none h-1/3">
               <img src={image} className="w-full" alt={title} />
@@ -76,7 +80,7 @@ const ServiceDetails = () => {
             </div>
           </div>
         </div>
-        <div className="border-2 border-blue-400 lg:col-span-4">
+        <div className="border-2 lg:col-span-5 p-3">
           <h1>review Side</h1>
           <div>
             <div>
@@ -87,7 +91,7 @@ const ServiceDetails = () => {
                     <input
                       type="text"
                       name="username"
-                      placeholder="type your name"
+                      placeholder="your name"
                       className="input input-bordered w-full rounded-md input-info"
                       required
                     />
@@ -97,6 +101,20 @@ const ServiceDetails = () => {
                       name="email"
                       placeholder="type your email"
                       className="input input-bordered w-full rounded-md input-info"
+                    />
+                    <input
+                      type="text"
+                      name="phone"
+                      placeholder="phone no."
+                      className="input input-bordered w-full rounded-md input-info"
+                      required
+                    />
+                    <input
+                      type="text"
+                      name="ratings"
+                      placeholder="rating here"
+                      className="input input-bordered w-full rounded-md input-info"
+                      required
                     />
                     {/* <div>
                     <label className="label">
