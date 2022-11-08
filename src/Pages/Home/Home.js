@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import bannerImg from "../../assets/Banner/banner.gif";
 import emergencyphone from "../../assets/homecontact/emergencyphone.png";
@@ -6,8 +6,18 @@ import address from "../../assets/homecontact/address.png";
 import booking from "../../assets/homecontact/bookByPhone.png";
 import email from "../../assets/homecontact/emailUs.png";
 import { FaArrowRight } from "react-icons/fa";
+import ServiceCard from "../Shared/ServiceCard/ServiceCard";
 
 const Home = () => {
+  const [services, setServices] = useState([]);
+  const [size, setSize] = useState(3);
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/limited-service?size=${size}`)
+      .then((res) => res.json())
+      .then((data) => setServices(data));
+  }, [size]);
+  console.log(services);
   return (
     <div className="w-[90%] mx-auto">
       {/* banner section start */}
@@ -42,20 +52,9 @@ const Home = () => {
 
       {/* service section start */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <div className="card w-full bg-base-100 shadow-xl">
-          <figure>
-            <img src="https://placeimg.com/400/225/arch" alt="Shoes" />
-          </figure>
-          <div className="card-body">
-            <h2 className="card-title">Shoes!</h2>
-            <p>If a dog chews shoes whose shoes does he choose?</p>
-            <div className="card-actions justify-end">
-              <button className="btn btn-primary border-none rounded bg-blue-400 hover:bg-gradient-to-r from-blue-400 to-pink-400 hover:border-none">
-                Read More
-              </button>
-            </div>
-          </div>
-        </div>
+        {services.map((service) => (
+          <ServiceCard key={service._id} service={service}></ServiceCard>
+        ))}
       </div>
       {/* service section end */}
       {/* appointment form start */}
@@ -100,7 +99,7 @@ const Home = () => {
       {/* appointment form end */}
 
       {/* emergency contact start */}
-      <div className="w-[90%] mx-auto border border-red-400 mt-10">
+      <div className="w-[90%] mx-auto  mt-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 p-10">
           <div className="flex flex-col">
             <div>
