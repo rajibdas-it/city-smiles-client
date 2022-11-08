@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import moment from "moment/moment";
 import { toast } from "react-toastify";
 import UserReview from "../UserReview/UserReview";
@@ -17,22 +17,6 @@ const ServiceDetails = () => {
   //   const min = newDate.getMinutes();
   //   const sec = newDate.getSeconds();
   //   console.log(newDate.toLocaleString());
-
-  //   console.log(day);
-  //   console.log(month + 1);
-  //   console.log(year);
-  //   console.log(hr);
-  //   console.log(min);
-  //   console.log(sec);
-
-  //   console.log(currentDate);
-  //   console.log(moment().format("DD-MM-YYYY hh:mm:ss"));
-  //   useEffect(() => {
-  //     fetch(`http://localhost:5000/reviews?service=${_id}`);
-  //   }, [_id])
-  //     .then((res) => res.json())
-  //     .then((data) => console.log(data));
-
   useEffect(() => {
     fetch(`http://localhost:5000/all-reviews?sId=${_id}`)
       .then((res) => res.json())
@@ -42,14 +26,14 @@ const ServiceDetails = () => {
         }
       });
   }, [_id]);
-  console.log(comments);
+  // console.log(comments);
   const handleSubmitComment = (event) => {
     event.preventDefault();
     const form = event.target;
     const userName = form.username.value;
     const email = form.email.value;
     const comment = form.comment.value;
-    console.log(userName, comment, email, currentDate);
+    // console.log(userName, comment, email, currentDate);
     const review = {
       userName,
       email,
@@ -67,9 +51,11 @@ const ServiceDetails = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        if (data.acknowledged) {
-          toast.success("Review Created", { autoClose: 1500 });
+        // console.log(data);
+        if (data?.acknowledged) {
+          toast.success("Review Created", { autoClose: 1000 });
+          const newComments = [review, ...comments];
+          setComments(newComments);
         }
       });
     // console.log("comment will be like this: ", review);
