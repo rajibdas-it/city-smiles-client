@@ -60,6 +60,7 @@ const ServiceDetails = () => {
       });
     // console.log("comment will be like this: ", review);
   };
+  const user = false;
   return (
     <div className="w-[90%] mx-auto">
       <h1>This is a service details page of {_id}</h1>
@@ -80,23 +81,24 @@ const ServiceDetails = () => {
           <div>
             <div>
               <h1>Add Review</h1>
-              <form className="w-full" onSubmit={handleSubmitComment}>
-                <div className="grid grid-cols-2 gap-2">
-                  <input
-                    type="text"
-                    name="username"
-                    placeholder="type your name"
-                    className="input input-bordered w-full rounded-md input-info"
-                    required
-                  />
+              {user ? (
+                <form className="w-full" onSubmit={handleSubmitComment}>
+                  <div className="grid grid-cols-2 gap-2">
+                    <input
+                      type="text"
+                      name="username"
+                      placeholder="type your name"
+                      className="input input-bordered w-full rounded-md input-info"
+                      required
+                    />
 
-                  <input
-                    type="text"
-                    name="email"
-                    placeholder="type your email"
-                    className="input input-bordered w-full rounded-md input-info"
-                  />
-                  {/* <div>
+                    <input
+                      type="text"
+                      name="email"
+                      placeholder="type your email"
+                      className="input input-bordered w-full rounded-md input-info"
+                    />
+                    {/* <div>
                     <label className="label">
                       <span className="label-text">What is your name?</span>
                     </label>
@@ -106,27 +108,35 @@ const ServiceDetails = () => {
                       className="input input-bordered w-full rounded-md input-info"
                     />
                   </div> */}
-                </div>
-                <div>
-                  <textarea
-                    name="comment"
-                    className="textarea textarea-info rounded-md mt-3 w-full h-14"
-                    placeholder="write your comment here..."
-                  ></textarea>
-                </div>
-                <div className="flex justify-center mt-1">
-                  <button className="btn border-none rounded text-white bg-blue-400 hover:bg-gradient-to-r from-blue-400 to-pink-400 hover:border-none">
-                    Add Review
-                  </button>
-                </div>
-              </form>
+                  </div>
+                  <div>
+                    <textarea
+                      name="comment"
+                      className="textarea textarea-info rounded-md mt-3 w-full h-14"
+                      placeholder="write your comment here..."
+                    ></textarea>
+                  </div>
+                  <div className="flex justify-center mt-1">
+                    <button className="btn border-none rounded text-white bg-blue-400 hover:bg-gradient-to-r from-blue-400 to-pink-400 hover:border-none">
+                      Add Review
+                    </button>
+                  </div>
+                </form>
+              ) : (
+                "Login for posted review here..."
+              )}
             </div>
             <div>
               <h1>Patient Review </h1>
-
-              {comments.map((cmt) => (
+              {comments?.map((cmt) => (
                 <UserReview key={cmt._id} cmt={cmt}></UserReview>
               ))}
+
+              {/* {user
+                ? comments?.map((cmt) => (
+                    <UserReview key={cmt._id} cmt={cmt}></UserReview>
+                  ))
+                : "Please login for commented here..."} */}
             </div>
           </div>
         </div>
