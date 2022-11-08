@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const ServiceCard = ({ service }) => {
   const { _id, title, image, description } = service;
@@ -15,9 +16,11 @@ const ServiceCard = ({ service }) => {
             : description}
         </p>
         <div className="card-actions justify-end">
-          <button className="btn btn-primary border-none rounded text-white bg-blue-400 hover:bg-gradient-to-r from-blue-400 to-pink-400 hover:border-none">
-            Read More
-          </button>
+          <Link to={`/service/${_id}`}>
+            <button className="btn btn-primary border-none rounded text-white bg-blue-400 hover:bg-gradient-to-r from-blue-400 to-pink-400 hover:border-none">
+              Read More
+            </button>
+          </Link>
         </div>
       </div>
     </div>

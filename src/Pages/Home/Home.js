@@ -17,7 +17,7 @@ const Home = () => {
       .then((res) => res.json())
       .then((data) => setServices(data));
   }, [size]);
-  console.log(services);
+  // console.log(services);
   return (
     <div className="w-[90%] mx-auto">
       {/* banner section start */}
