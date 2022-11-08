@@ -11,7 +11,7 @@ const Services = () => {
   }, []);
 
   return (
-    <div>
+    <div className="w-[90%] mx-auto">
       <p className="text-4xl text-center font-bold my-5 capitalize">
         my services
       </p>
