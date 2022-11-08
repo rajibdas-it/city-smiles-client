@@ -3,7 +3,7 @@ import React from "react";
 const UserReview = ({ cmt }) => {
   const { comment, _id, userName, date } = cmt;
   return (
-    <div className="my-3 flex flex-col w-full divide-y rounded-md divide-gray-700 shadow-lg">
+    <div className="mb-3 bg-gradient-to-tr from-purple-400 to-blue-400 flex flex-col w-full divide-y rounded-md divide-gray-700 shadow-lg">
       <div className="flex justify-between p-1">
         <div className="flex space-x-4">
           <div>
