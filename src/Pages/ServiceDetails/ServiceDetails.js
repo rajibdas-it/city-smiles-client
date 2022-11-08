@@ -69,8 +69,8 @@ const ServiceDetails = () => {
         </h1>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
-        <div className="border-2  lg:col-span-7">
-          <div className="card card-compact w-full bg-base-100 shadow-xl rounded-none">
+        <div className="lg:col-span-7">
+          <div className="card card-compact w-full bg-base-100 rounded-none">
             <figure className="rounded-none h-1/3">
               <img src={image} className="w-full" alt={title} />
             </figure>

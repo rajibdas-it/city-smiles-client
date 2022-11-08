@@ -29,8 +29,8 @@ const UserReview = ({ cmt }) => {
           <span className="text-xl font-bold">4.5</span>
         </div>
       </div>
-      <div className="p-4 space-y-2 text-sm">
-        <p>{comment}</p>
+      <div className="p-4 space-y-2 text-sm w-full">
+        <p className="w-full">{comment}</p>
       </div>
     </div>
   );
