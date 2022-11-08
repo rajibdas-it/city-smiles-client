@@ -5,13 +5,14 @@ import moment from "moment/moment";
 const ServiceDetails = () => {
   const service = useLoaderData();
   const { _id, title, image, description } = service;
-  var newDate = new Date();
-  const day = newDate.getDate();
-  const month = newDate.getMonth();
-  const year = newDate.getFullYear();
-  const hr = newDate.getHours();
-  const min = newDate.getMinutes();
-  const sec = newDate.getSeconds();
+  const currentDate = moment().format("MMMM Do YYYY, h:mm:ss a");
+  //   var newDate = new Date();
+  //   const day = newDate.getDate();
+  //   const month = newDate.getMonth();
+  //   const year = newDate.getFullYear();
+  //   const hr = newDate.getHours();
+  //   const min = newDate.getMinutes();
+  //   const sec = newDate.getSeconds();
   //   console.log(newDate.toLocaleString());
 
   //   console.log(day);
@@ -20,8 +21,9 @@ const ServiceDetails = () => {
   //   console.log(hr);
   //   console.log(min);
   //   console.log(sec);
-  const currentDate = moment().format("MMMM Do YYYY, h:mm:ss a");
+
   //   console.log(currentDate);
+  //   console.log(moment().format("DD-MM-YYYY hh:mm:ss"));
 
   const handleSubmitComment = (event) => {
     event.preventDefault();
@@ -37,6 +39,14 @@ const ServiceDetails = () => {
       date: currentDate,
       serviceId: _id,
     };
+
+    fetch("http://localhost:5000/reviews", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(review),
+    });
     // console.log("comment will be like this: ", review);
   };
   return (
