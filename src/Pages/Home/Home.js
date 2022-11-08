@@ -51,55 +51,27 @@ const Home = () => {
       {/* banner section end */}
 
       {/* service section start */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {services.map((service) => (
-          <ServiceCard key={service._id} service={service}></ServiceCard>
-        ))}
+      <div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {services.map((service) => (
+            <ServiceCard key={service._id} service={service}></ServiceCard>
+          ))}
+        </div>
+        <div className="mt-5 text-center">
+          <Link to="/services">
+            <button className="btn btn-primary px-14 border-none rounded text-white bg-pink-400 hover:bg-gradient-to-r from-blue-400 to-pink-400 hover:border-none justify-center">
+              See All
+            </button>
+          </Link>
+        </div>
       </div>
       {/* service section end */}
       {/* appointment form start */}
-      <div className="my-15">
-        <div className="card lg:card-side w-full shadow-xl">
-          <figure>
-            <img src="https://placeimg.com/400/400/arch" alt="Album" />
-          </figure>
-          <div className="card-body">
-            <h2 className="card-title justify-center">Book Your Visit</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              <input
-                type="text"
-                placeholder="Your Name"
-                className="input input-bordered rounded w-full "
-              />
-              <input
-                type="text"
-                placeholder="Your Email"
-                className="input input-bordered rounded w-full "
-              />
-              <input
-                type="text"
-                placeholder="Your Phone No"
-                className="input input-bordered rounded w-full"
-              />
-              <input
-                type="date"
-                value="01-Jan-2022"
-                className="input input-bordered rounded w-full"
-              />
-            </div>
 
-            <div className="card-actions justify-end">
-              <button className="btn btn-wide btn-primary text-white border-none rounded bg-blue-400 hover:bg-gradient-to-r from-blue-400 to-pink-400 hover:border-none">
-                Book Appointment Now
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
       {/* appointment form end */}
 
       {/* emergency contact start */}
-      <div className="w-[90%] mx-auto  mt-10">
+      <div className="w-[90%] mx-auto mt-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 p-10">
           <div className="flex flex-col">
             <div>
