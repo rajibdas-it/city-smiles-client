@@ -1,8 +1,10 @@
 import React from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const UpdateReviews = () => {
   const review = useLoaderData();
+  const navigate = useNavigate();
   const { _id, comment, ratings, phone } = review;
   console.log(review);
 
@@ -26,7 +28,12 @@ const UpdateReviews = () => {
       body: JSON.stringify(review),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        if (data.modifiedCount > 0) {
+          toast.success("Review updated.", { autoClose: 1000 });
+          navigate("/my-reviews");
+        }
+      });
   };
   return (
     <div>
