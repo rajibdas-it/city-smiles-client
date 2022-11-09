@@ -1,14 +1,20 @@
-import React, { useEffect, useState } from "react";
-import { useLoaderData, useNavigate } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { useLoaderData } from "react-router-dom";
 import moment from "moment/moment";
 import { toast } from "react-toastify";
 import UserReview from "../UserReview/UserReview";
+import { AuthContext } from "../../Context/UserContext";
 
 const ServiceDetails = () => {
   const service = useLoaderData();
+  const user = useContext(AuthContext);
   const { _id, title, image, description } = service;
   const currentDate = moment().format("MMMM Do YYYY, h:mm:ss a");
   const [comments, setComments] = useState([]);
+
+  // console.log(user.user.displayName);
+  // console.log(user.user.email);
+  // console.log(user.user.photoURL);
   //   var newDate = new Date();
   //   const day = newDate.getDate();
   //   const month = newDate.getMonth();
@@ -30,17 +36,26 @@ const ServiceDetails = () => {
   const handleSubmitComment = (event) => {
     event.preventDefault();
     const form = event.target;
-    const userName = form.username.value;
-    const email = form.email.value;
-    const comment = form.comment.value;
+    // const userName = form.username.value;
+    // console.log("userName from default value", userName);
+    // const email = form.email.value;
     // console.log(userName, comment, email, currentDate);
+    const comment = form.comment.value;
+    const phone = form.phone.value;
+    const ratings = form.ratings.value;
     const review = {
-      userName,
-      email,
-      comment,
       date: currentDate,
+      authorName: user.user.displayName,
+      email: user.user.email,
+      authorImg: user.user.photoURL,
+      phone,
+      comment,
+      ratings,
       serviceId: _id,
+      serviceName: title,
     };
+
+    console.log(review);
 
     fetch("http://localhost:5000/reviews", {
       method: "POST",
@@ -60,16 +75,12 @@ const ServiceDetails = () => {
       });
     // console.log("comment will be like this: ", review);
   };
-  const user = true;
+
   return (
     <div className="w-[90%] mx-auto">
-      {/* <div>
-        <div className="w-28 h-28 border-8 border-blue-500 border-dotted rounded-full animate-spin"></div>
-        <p>Loading ...</p>
-      </div> */}
       <div className="flex w-full bg-gradient-to-tr from-blue-400 to-pink-400 rounded-md  h-40 justify-center items-center my-5">
         <h1 className="font-bold text-2xl md:text-3xl text-white text-center">
-          This is a service details page of {title}
+          Service Details page of {title}
         </h1>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
@@ -95,16 +106,20 @@ const ServiceDetails = () => {
                     <input
                       type="text"
                       name="username"
+                      defaultValue={user.user.displayName}
                       placeholder="your name"
                       className="input input-bordered w-full rounded-md input-info"
                       required
+                      readOnly
                     />
 
                     <input
                       type="text"
                       name="email"
+                      defaultValue={user.user.email}
                       placeholder="type your email"
                       className="input input-bordered w-full rounded-md input-info"
+                      readOnly
                     />
                     <input
                       type="text"
