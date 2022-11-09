@@ -6,7 +6,7 @@ const UpdateReviews = () => {
   const review = useLoaderData();
   const navigate = useNavigate();
   const { _id, comment, ratings, phone } = review;
-  console.log(review);
+  //   console.log(review);
 
   const handleUpdateComment = (event) => {
     event.preventDefault();
