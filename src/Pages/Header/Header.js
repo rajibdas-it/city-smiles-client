@@ -1,102 +1,264 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+
+import { AuthContext } from "../../Context/UserContext";
+import noimg from "../../assets/imgNotFound.webp";
+import { toast } from "react-toastify";
 
 const Header = () => {
+  const { user, logOut } = useContext(AuthContext);
+  const navigate = useNavigate();
+  // const user = false;
+
+  // Signout Funciton
+  const handleSignOut = () => {
+    logOut()
+      .then((result) => {
+        navigate("/login");
+      })
+      .then((error) => {});
+  };
+
   return (
-    <div className="navbar bg-base-100">
-      <div className="navbar-start">
-        <div className="dropdown">
-          <label tabIndex={0} className="btn btn-ghost lg:hidden">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h8m-8 6h16"
-              />
-            </svg>
+    <div className="navbar shadow-lg">
+      <div className="flex-1 ml-3">
+        <Link to="/" className="btn btn-ghost normal-case text-xl">
+          City Smiles
+        </Link>
+      </div>
+
+      <div className="flex-none gap-2 justify-center items-center">
+        <div>
+          <ul className="hidden lg:flex gap-10 text-gray-500 ">
+            <li>
+              <NavLink
+                to="/home"
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-blue-400 font-semibold"
+                    : "text-black font-semibold"
+                }
+              >
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/services"
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-blue-400 font-semibold"
+                    : "text-black font-semibold"
+                }
+              >
+                Services
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/blogs"
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-blue-400 font-semibold"
+                    : "text-black font-semibold"
+                }
+              >
+                Blogs
+              </NavLink>
+            </li>
+
+            {!user?.uid && (
+              <>
+                <li>
+                  <NavLink
+                    to="/login"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-blue-400 font-semibold"
+                        : "text-black font-semibold"
+                    }
+                  >
+                    Login
+                  </NavLink>
+                </li>
+                <li className="mr-3">
+                  <NavLink
+                    to="/register"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-blue-400 font-semibold"
+                        : "text-black font-semibold"
+                    }
+                  >
+                    Register
+                  </NavLink>
+                </li>
+              </>
+            )}
+          </ul>
+        </div>
+        <div className="dropdown dropdown-end lg:hidden">
+          <label tabIndex={0} className="btn btn btn-square btn-ghost">
+            <div className="flex-none">
+              <button className="btn btn-square btn-ghost">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  className="inline-block w-5 h-5 stroke-current"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  ></path>
+                </svg>
+              </button>
+            </div>
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+            className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
           >
             <li>
-              <a>Item 1</a>
-            </li>
-            <li tabIndex={0}>
-              <a className="justify-between">
-                Parent
-                <svg
-                  className="fill-current"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
-                </svg>
-              </a>
-              <ul className="p-2">
-                <li>
-                  <a>Submenu 1</a>
-                </li>
-                <li>
-                  <a>Submenu 2</a>
-                </li>
-              </ul>
+              <NavLink
+                to="/home"
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-blue-400 font-semibold"
+                    : "text-black font-semibold"
+                }
+              >
+                Home
+              </NavLink>
             </li>
             <li>
-              <a>Item 3</a>
+              <NavLink
+                to="/services"
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-blue-400 font-semibold"
+                    : "text-black font-semibold"
+                }
+              >
+                Services
+              </NavLink>
             </li>
+            <li>
+              <NavLink
+                to="/blogs"
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-blue-400 font-semibold"
+                    : "text-black font-semibold"
+                }
+              >
+                Blogs
+              </NavLink>
+            </li>
+
+            {!user?.uid && (
+              <>
+                <li>
+                  <NavLink
+                    to="/login"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-blue-400 font-semibold"
+                        : "text-black font-semibold"
+                    }
+                  >
+                    Login
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/register"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-blue-400 font-semibold"
+                        : "text-black font-semibold"
+                    }
+                  >
+                    Register
+                  </NavLink>
+                </li>
+              </>
+            )}
           </ul>
         </div>
-        <button className="btn btn-ghost normal-case text-xl">
-          City Smiles
-        </button>
-        {/* <Link to="/" className="btn btn-ghost normal-case text-xl">
-          City Smiles
-        </Link> */}
-      </div>
-      <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal p-0">
-          <li>
-            <a>Item 1</a>
-          </li>
-          <li tabIndex={0}>
-            <a>
-              Parent
-              <svg
-                className="fill-current"
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-              >
-                <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
-              </svg>
-            </a>
-            <ul className="p-2">
-              <li>
-                <a>Submenu 1</a>
+        {user?.uid && (
+          <div className="dropdown dropdown-end mr-3">
+            {/* <div className="tooltip" data-tip="hello"> */}
+            <label tabIndex={0} className="btn btn-ghost btn-circle avatar ">
+              <div className="w-10 rounded-full">
+                {user?.photoURL ? (
+                  <img src={user?.photoURL} alt="" />
+                ) : (
+                  <img src={noimg} alt="" />
+                )}
+              </div>
+            </label>
+            {/* </div> */}
+
+            <ul
+              tabIndex={0}
+              className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
+            >
+              {/* <li className="mb-2">
+                <Link to="/profile" className="btn btn-sm btn-outline btn-info">
+                  Profile
+                </Link>
+              </li> */}
+              <li className="font-semibold">
+                <NavLink
+                  to="/profile"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-blue-400 font-semibold"
+                      : "text-black font-semibold"
+                  }
+                >
+                  My Profile
+                </NavLink>
               </li>
+              <li className="font-semibold">
+                <NavLink
+                  to="/my-reviews"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-blue-400 font-semibold"
+                      : "text-black font-semibold"
+                  }
+                >
+                  My Reviews
+                </NavLink>
+              </li>
+              <li className="font-semibold">
+                <NavLink
+                  to="/add-services"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-blue-400 font-semibold"
+                      : "text-black font-semibold"
+                  }
+                >
+                  Add Services
+                </NavLink>
+              </li>
+
               <li>
-                <a>Submenu 2</a>
+                <button
+                  onClick={handleSignOut}
+                  className="btn btn-sm btn-outline btn-accent"
+                >
+                  Log Out
+                </button>
               </li>
             </ul>
-          </li>
-          <li>
-            <a>Item 3</a>
-          </li>
-        </ul>
-      </div>
-      <div className="navbar-end">
-        <a className="btn">Get started</a>
+          </div>
+        )}
       </div>
     </div>
   );
