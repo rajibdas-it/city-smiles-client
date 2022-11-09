@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import CommentRow from "./CommentRow";
 
 const MyReviews = () => {
+  const [reviews, setReviews] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:5000/reviews")
+      .then((res) => res.json())
+      .then((data) => setReviews(data));
+  }, []);
   return (
     <div className="my-12">
       <div className="mb-12 flex justify-center items-center h-40 bg-gradient-to-tr from-blue-400 to-pink-400">
@@ -20,26 +27,13 @@ const MyReviews = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th>1</th>
-                <td>Cy Ganderton</td>
-                <td>Quality Control Specialist</td>
-                <td>Blue</td>
-              </tr>
-
-              <tr>
-                <th>2</th>
-                <td>Hart Hagerty</td>
-                <td>Desktop Support Technician</td>
-                <td>Purple</td>
-              </tr>
-
-              <tr>
-                <th>3</th>
-                <td>Brice Swyre</td>
-                <td>Tax Accountant</td>
-                <td>Red</td>
-              </tr>
+              {reviews.map((review, index) => (
+                <CommentRow
+                  key={review._id}
+                  index={index}
+                  review={review}
+                ></CommentRow>
+              ))}
             </tbody>
           </table>
         </div>
