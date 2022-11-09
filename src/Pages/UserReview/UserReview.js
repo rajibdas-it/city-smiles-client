@@ -5,7 +5,7 @@ const UserReview = ({ cmt }) => {
   const { _id, date, authorName, email, authorImg, phone, comment, ratings } =
     cmt;
   return (
-    <div className="mb-3 p-4 bg-gradient-to-tr from-purple-400 to-blue-400 flex flex-col w-full divide-y rounded-md divide-gray-700 shadow-lg">
+    <div className="mb-3 bg-gradient-to-tr from-purple-400 to-blue-400 flex flex-col w-full divide-y rounded-md divide-gray-700 shadow-lg">
       <div className="flex justify-between p-3">
         <div className="flex space-x-4">
           <div>
@@ -31,8 +31,8 @@ const UserReview = ({ cmt }) => {
           <span className="text-xl font-bold">{ratings}</span>
         </div>
       </div>
-      <div className="p-2 space-y-2 text-sm w-full">
-        <p className="w-full">{comment}</p>
+      <div className="p-2 text-sm">
+        <p className="w-full text-justify">{comment}</p>
       </div>
     </div>
   );

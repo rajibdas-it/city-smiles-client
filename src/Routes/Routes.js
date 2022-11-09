@@ -10,6 +10,7 @@ import Register from "../Pages/Register/Register";
 import ServiceDetails from "../Pages/ServiceDetails/ServiceDetails";
 import AddServices from "../Pages/Services/AddServices";
 import Services from "../Pages/Services/Services";
+import UpdateReviews from "../Pages/UpdateReviews/UpdateReviews";
 import UserProfile from "../Pages/UserProfile/UserProfile";
 import PrivateRoutes from "./PrivateRoutes";
 
@@ -33,6 +34,12 @@ export const router = createBrowserRouter([
           fetch(`http://localhost:5000/services/${params.id}`),
       },
       { path: "/blogs", element: <Blogs></Blogs> },
+      {
+        path: "/edit-review/:id",
+        element: <UpdateReviews></UpdateReviews>,
+        loader: ({ params }) =>
+          fetch(` http://localhost:5000/reviews/${params.id}`),
+      },
       { path: "/register", element: <Register></Register> },
       { path: "/login", element: <Login></Login> },
       { path: "/resetpassword", element: <PasswordReset></PasswordReset> },

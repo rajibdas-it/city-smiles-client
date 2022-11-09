@@ -205,7 +205,7 @@ const Register = () => {
             <p className="text-xs text-center sm:px-6 mb-5">
               Already have an account?
               <Link to="/login" rel="noopener noreferrer" className="underline">
-                Sign In
+                <span className="hover:text-blue-400">Sign In</span>
               </Link>
             </p>
           </div>

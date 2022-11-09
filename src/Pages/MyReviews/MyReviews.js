@@ -1,13 +1,35 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { json } from "react-router-dom";
+import { toast } from "react-toastify";
+import { AuthContext } from "../../Context/UserContext";
 import CommentRow from "./CommentRow";
 
 const MyReviews = () => {
+  const { user } = useContext(AuthContext);
   const [reviews, setReviews] = useState([]);
+  // const url = `http://localhost:5000/reviews?email=${user?.email}`;
+  // console.log(url);
   useEffect(() => {
-    fetch("http://localhost:5000/reviews")
+    fetch(`http://localhost:5000/reviews?email=${user?.email}`)
       .then((res) => res.json())
       .then((data) => setReviews(data));
-  }, []);
+  }, [user?.email]);
+
+  const handleDeleteComment = (id) => {
+    fetch(`http://localhost:5000/reviews/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount > 0) {
+          toast.success("Comment Deleted", { autoClose: 1000 });
+          const remainingComment = reviews.filter(
+            (review) => review._id !== id
+          );
+          setReviews(remainingComment);
+        }
+      });
+  };
   return (
     <div className="my-12">
       <div className="mb-12 flex justify-center items-center h-40 bg-gradient-to-tr from-blue-400 to-pink-400">
@@ -15,7 +37,7 @@ const MyReviews = () => {
           Table of Your Reviews
         </p>
       </div>
-      <div>
+      <div className="w-[80%] mx-auto">
         <div className="overflow-x-auto">
           <table className="table w-full">
             <thead>
@@ -32,6 +54,7 @@ const MyReviews = () => {
                   key={review._id}
                   index={index}
                   review={review}
+                  handleDeleteComment={handleDeleteComment}
                 ></CommentRow>
               ))}
             </tbody>

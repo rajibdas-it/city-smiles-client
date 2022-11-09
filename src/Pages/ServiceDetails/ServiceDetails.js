@@ -7,7 +7,7 @@ import { AuthContext } from "../../Context/UserContext";
 
 const ServiceDetails = () => {
   const service = useLoaderData();
-  const user = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const { _id, title, image, description } = service;
   const currentDate = moment().format("MMMM Do YYYY, h:mm:ss a");
   const [comments, setComments] = useState([]);
@@ -45,9 +45,9 @@ const ServiceDetails = () => {
     const ratings = form.ratings.value;
     const review = {
       date: currentDate,
-      authorName: user.user.displayName,
-      email: user.user.email,
-      authorImg: user.user.photoURL,
+      authorName: user.displayName,
+      email: user.email,
+      authorImg: user.photoURL,
       phone,
       comment,
       ratings,
@@ -98,44 +98,45 @@ const ServiceDetails = () => {
         <div className="border-2 lg:col-span-5 p-3">
           <h1>review Side</h1>
           <div>
-            <div>
-              <h1>Add Review</h1>
-              {user ? (
-                <form className="w-full" onSubmit={handleSubmitComment}>
-                  <div className="grid grid-cols-2 gap-2">
-                    <input
-                      type="text"
-                      name="username"
-                      defaultValue={user.user.displayName}
-                      placeholder="your name"
-                      className="input input-bordered w-full rounded-md input-info"
-                      required
-                      readOnly
-                    />
+            {user?.uid ? (
+              <div>
+                <h1>Add Review</h1>
+                {user ? (
+                  <form className="w-full" onSubmit={handleSubmitComment}>
+                    <div className="grid grid-cols-2 gap-2">
+                      <input
+                        type="text"
+                        name="username"
+                        defaultValue={user.displayName}
+                        placeholder="your name"
+                        className="input input-bordered w-full rounded-md input-info"
+                        required
+                        readOnly
+                      />
 
-                    <input
-                      type="text"
-                      name="email"
-                      defaultValue={user.user.email}
-                      placeholder="type your email"
-                      className="input input-bordered w-full rounded-md input-info"
-                      readOnly
-                    />
-                    <input
-                      type="text"
-                      name="phone"
-                      placeholder="phone no."
-                      className="input input-bordered w-full rounded-md input-info"
-                      required
-                    />
-                    <input
-                      type="text"
-                      name="ratings"
-                      placeholder="rating here"
-                      className="input input-bordered w-full rounded-md input-info"
-                      required
-                    />
-                    {/* <div>
+                      <input
+                        type="text"
+                        name="email"
+                        defaultValue={user.email}
+                        placeholder="type your email"
+                        className="input input-bordered w-full rounded-md input-info"
+                        readOnly
+                      />
+                      <input
+                        type="text"
+                        name="phone"
+                        placeholder="phone no."
+                        className="input input-bordered w-full rounded-md input-info"
+                        required
+                      />
+                      <input
+                        type="text"
+                        name="ratings"
+                        placeholder="rating here"
+                        className="input input-bordered w-full rounded-md input-info"
+                        required
+                      />
+                      {/* <div>
                     <label className="label">
                       <span className="label-text">What is your name?</span>
                     </label>
@@ -145,24 +146,29 @@ const ServiceDetails = () => {
                       className="input input-bordered w-full rounded-md input-info"
                     />
                   </div> */}
-                  </div>
-                  <div>
-                    <textarea
-                      name="comment"
-                      className="textarea textarea-info rounded-md mt-3 w-full h-14"
-                      placeholder="write your comment here..."
-                    ></textarea>
-                  </div>
-                  <div className="flex justify-center mt-1">
-                    <button className="btn border-none rounded text-white bg-blue-400 hover:bg-gradient-to-r from-blue-400 to-pink-400 hover:border-none">
-                      Add Review
-                    </button>
-                  </div>
-                </form>
-              ) : (
-                "Login for posted review here..."
-              )}
-            </div>
+                    </div>
+                    <div>
+                      <textarea
+                        name="comment"
+                        className="textarea textarea-info rounded-md mt-3 w-full h-14"
+                        placeholder="write your comment here..."
+                      ></textarea>
+                    </div>
+                    <div className="flex justify-center mt-1">
+                      <button className="btn border-none rounded text-white bg-blue-400 hover:bg-gradient-to-r from-blue-400 to-pink-400 hover:border-none">
+                        Add Review
+                      </button>
+                    </div>
+                  </form>
+                ) : (
+                  "Login for posted review here..."
+                )}
+              </div>
+            ) : (
+              <div>
+                <p>Need to sign in for review.</p>
+              </div>
+            )}
             <div>
               <h1>Patient Review </h1>
               {comments?.map((cmt) => (

@@ -47,8 +47,9 @@ const Login = () => {
       <div className="min-h-screen lg:w-[50%] mx-auto">
         <div className="hero-content flex-col ">
           <div className="text-center lg:text-left">
-            <h1 className="text-5xl font-bold italic text-blue-500">
-              Login now!
+            <h1 className="text-5xl font-bold">
+              <span className="text-blue-400">Login </span>
+              <span className="text-pink-400">now!</span>
             </h1>
           </div>
           <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
@@ -146,12 +147,8 @@ const Login = () => {
             </div>
             <p className="text-xs text-center sm:px-6 mb-5">
               Don't have an account?
-              <Link
-                to="/register"
-                rel="noopener noreferrer"
-                className="underline"
-              >
-                Sign up
+              <Link to="/register" className="underline">
+                <span className="hover:text-blue-400">Sign up</span>
               </Link>
             </p>
           </div>
