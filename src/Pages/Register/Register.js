@@ -171,7 +171,7 @@ const Register = () => {
             </form>
             <div className="">
               <p className="px-3 text-sm text-center  text-white bg-gradient-to-tr from-blue-400 to bg-pink-400 mb-2">
-                Sign In With Google
+                Sign Up With Google
               </p>
             </div>
             <div className="flex justify-center mb-2">
