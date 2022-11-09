@@ -11,6 +11,7 @@ import ServiceDetails from "../Pages/ServiceDetails/ServiceDetails";
 import AddServices from "../Pages/Services/AddServices";
 import Services from "../Pages/Services/Services";
 import UserProfile from "../Pages/UserProfile/UserProfile";
+import PrivateRoutes from "./PrivateRoutes";
 
 export const router = createBrowserRouter([
   {
@@ -23,7 +24,11 @@ export const router = createBrowserRouter([
       { path: "/services", element: <Services></Services> },
       {
         path: "/service/:id",
-        element: <ServiceDetails></ServiceDetails>,
+        element: (
+          <PrivateRoutes>
+            <ServiceDetails></ServiceDetails>
+          </PrivateRoutes>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/services/${params.id}`),
       },
@@ -31,9 +36,30 @@ export const router = createBrowserRouter([
       { path: "/register", element: <Register></Register> },
       { path: "/login", element: <Login></Login> },
       { path: "/resetpassword", element: <PasswordReset></PasswordReset> },
-      { path: "/my-reviews", element: <MyReviews></MyReviews> },
-      { path: "/add-services", element: <AddServices></AddServices> },
-      { path: "/profile", element: <UserProfile></UserProfile> },
+      {
+        path: "/my-reviews",
+        element: (
+          <PrivateRoutes>
+            <MyReviews></MyReviews>
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "/add-services",
+        element: (
+          <PrivateRoutes>
+            <AddServices></AddServices>
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "/profile",
+        element: (
+          <PrivateRoutes>
+            <UserProfile></UserProfile>
+          </PrivateRoutes>
+        ),
+      },
     ],
   },
 ]);

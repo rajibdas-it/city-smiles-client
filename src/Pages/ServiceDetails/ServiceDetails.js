@@ -63,6 +63,10 @@ const ServiceDetails = () => {
   const user = true;
   return (
     <div className="w-[90%] mx-auto">
+      {/* <div>
+        <div className="w-28 h-28 border-8 border-blue-500 border-dotted rounded-full animate-spin"></div>
+        <p>Loading ...</p>
+      </div> */}
       <div className="flex w-full bg-gradient-to-tr from-blue-400 to-pink-400 rounded-md  h-40 justify-center items-center my-5">
         <h1 className="font-bold text-2xl md:text-3xl text-white text-center">
           This is a service details page of {title}

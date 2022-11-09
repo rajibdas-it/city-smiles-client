@@ -23,7 +23,8 @@ const Header = () => {
     <div className="navbar shadow-lg">
       <div className="flex-1 ml-3">
         <Link to="/" className="btn btn-ghost normal-case text-xl">
-          City Smiles
+          <span className="text-blue-400 font-bold text-2xl">City</span>{" "}
+          <span className="text-pink-400 font-bold text-2xl">Smiles</span>
         </Link>
       </div>
 
@@ -190,7 +191,6 @@ const Header = () => {
         </div>
         {user?.uid && (
           <div className="dropdown dropdown-end mr-3">
-            {/* <div className="tooltip" data-tip="hello"> */}
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar ">
               <div className="w-10 rounded-full">
                 {user?.photoURL ? (
@@ -220,7 +220,7 @@ const Header = () => {
                       : "text-black font-semibold"
                   }
                 >
-                  My Profile
+                  <span className="font-semibold text-lg">My Profile</span>
                 </NavLink>
               </li>
               <li className="font-semibold">
@@ -232,7 +232,7 @@ const Header = () => {
                       : "text-black font-semibold"
                   }
                 >
-                  My Reviews
+                  <span className="font-semibold text-lg">My Reviews</span>
                 </NavLink>
               </li>
               <li className="font-semibold">
@@ -244,16 +244,24 @@ const Header = () => {
                       : "text-black font-semibold"
                   }
                 >
-                  Add Services
+                  <span className="font-semibold text-lg">Add Services</span>
                 </NavLink>
               </li>
 
-              <li>
+              {/* <li>
                 <button
                   onClick={handleSignOut}
                   className="btn btn-sm btn-outline btn-accent"
                 >
                   Log Out
+                </button>
+              </li> */}
+              <li className="mt-2">
+                <button
+                  onClick={handleSignOut}
+                  className="w-full btn btn-primary border-none text-white bg-rose-500"
+                >
+                  <span className="font-semibold text-xl">Log Out</span>
                 </button>
               </li>
             </ul>
