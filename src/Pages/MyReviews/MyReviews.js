@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import { json } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../Context/UserContext";
 import CommentRow from "./CommentRow";
@@ -9,10 +8,16 @@ const MyReviews = () => {
   const [reviews, setReviews] = useState([]);
   // const url = `http://localhost:5000/reviews?email=${user?.email}`;
   // console.log(url);
+  const userToken = localStorage.getItem("user-token");
+  console.log(userToken);
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews?email=${user?.email}`)
+    fetch(`http://localhost:5000/reviews?email=${user?.email}`, {
+      headers: {
+        authorization: `Bearer ${userToken}`,
+      },
+    })
       .then((res) => res.json())
-      .then((data) => setReviews(data));
+      .then((data) => console.log(data));
   }, [user?.email]);
 
   const handleDeleteComment = (id) => {
