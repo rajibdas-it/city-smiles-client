@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import moment from "moment/moment";
 import { toast } from "react-toastify";
 import UserReview from "../UserReview/UserReview";
@@ -86,7 +86,7 @@ const ServiceDetails = () => {
       <div className="grid grid-cols-1  gap-4">
         <div className="lg:col-span-7">
           <div className="card card-compact w-full bg-base-100 rounded-none">
-            <figure className="rounded-none h-1/3">
+            <figure className="rounded-none w-[70%] mx-auto">
               <img src={image} className="w-full" alt={title} />
             </figure>
             <div className="card-body">
@@ -96,11 +96,12 @@ const ServiceDetails = () => {
           </div>
         </div>
         <div className="border-2 lg:col-span-5 p-3">
-          <h1>review Side</h1>
           <div>
             {user?.uid ? (
               <div>
-                <h1>Add Review</h1>
+                <h1 className="text-xl mb-3 font-semibold">
+                  Add your review here...
+                </h1>
                 {user ? (
                   <form className="w-full" onSubmit={handleSubmitComment}>
                     <div className="grid grid-cols-2 gap-2">
@@ -166,11 +167,17 @@ const ServiceDetails = () => {
               </div>
             ) : (
               <div>
-                <p>Need to sign in for review.</p>
+                <p className="text-center">Please login to add a review.</p>
+                <div className="flex justify-center mt-1">
+                  <Link to="/login">
+                    <button className="btn border-none rounded text-white bg-blue-400 hover:bg-gradient-to-r from-blue-400 to-pink-400 hover:border-none">
+                      Login
+                    </button>
+                  </Link>
+                </div>
               </div>
             )}
-            <div>
-              <h1>Patient Review </h1>
+            <div className="my-5">
               {comments?.map((cmt) => (
                 <UserReview key={cmt._id} cmt={cmt}></UserReview>
               ))}

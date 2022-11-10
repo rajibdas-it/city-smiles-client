@@ -10,6 +10,7 @@ import ServiceCard from "../Shared/ServiceCard/ServiceCard";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import "react-photo-view/dist/react-photo-view.css";
 import oneImg from "../../assets/services/1.png";
+import appointment from "../../assets/appointment2.gif";
 
 const Home = () => {
   const [services, setServices] = useState([]);
@@ -80,20 +81,59 @@ const Home = () => {
       </div>
       {/* service section end */}
       {/* appointment form start */}
-      {/* <PhotoProvider>
-        <PhotoView src={oneImg}>
-          <img src={oneImg} alt="" className="h-96" />
-        </PhotoView>
-      </PhotoProvider> */}
+      <div className=" mt-2">
+        <div className="flex justify-around items-center flex-col lg:flex-row-reverse">
+          <div>
+            <img src={appointment} alt="" className="h-[500px]" />
+          </div>
+          <div>
+            <div className="card-body">
+              <h2 className="card-title justify-start font-semibold text-2xl">
+                Book Your Visit At
+              </h2>
+              <h2 className="card-title justify-start mb-3 font-bold">
+                <span className="text-5xl text-blue-400">City</span>
+                <span className="text-5xl text-pink-400">Smiles</span>
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <input
+                  type="text"
+                  placeholder="Your Name"
+                  className="input input-bordered rounded w-full "
+                />
+                <input
+                  type="text"
+                  placeholder="Your Email"
+                  className="input input-bordered rounded w-full "
+                />
+                <input
+                  type="text"
+                  placeholder="Your Phone No"
+                  className="input input-bordered rounded w-full"
+                />
+                <input
+                  type="date"
+                  className="input input-bordered rounded w-full"
+                />
+              </div>
+              <div className="card-actions justify-end">
+                <button className="btn btn-wide btn-primary text-white border-none rounded bg-blue-400 hover:bg-gradient-to-r from-blue-400 to-pink-400 hover:border-none">
+                  Book Appointment Now
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* appointment form end */}
 
       {/* emergency contact start */}
-      <div className="w-[90%] mx-auto mt-20">
+      <div className="w-[90%] mx-auto mb-20 mt-1">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 p-10">
-          <div className="flex flex-col">
+          <div className="flex flex-col items-center">
             <div>
-              <img src={emergencyphone} className="ml-10 h-28 w-28" alt="" />
+              <img src={emergencyphone} className="h-28 w-28" alt="" />
             </div>
             <div className="text-center">
               <h1 className="text-xl font-bold">Emergency Phone</h1>
@@ -101,24 +141,24 @@ const Home = () => {
               <p className="text-gray-400">Call me Anytime 24/7</p>
             </div>
           </div>
-          <div className="flex flex-col justify-center">
-            <img src={address} className="ml-10 h-28 w-28" alt="" />
+          <div className="flex flex-col items-center">
+            <img src={address} className="h-28 w-28" alt="" />
             <div className="text-center">
               <h1 className="text-xl font-bold">Address</h1>
               <p className="text-gray-400">Solimullah Road, Mohammadpur,</p>
               <p className="text-gray-400">Dhaka, Bangladesh</p>
             </div>
           </div>
-          <div className="flex flex-col justify-center">
-            <img src={booking} className="ml-10 h-28 w-28" alt="" />
+          <div className="flex flex-col items-center">
+            <img src={booking} className="h-28 w-28" alt="" />
             <div className="text-center">
               <h1 className="text-xl font-bold">Booking By Phone</h1>
               <p className="text-gray-400">+88 01710 000000</p>
               <p className="text-gray-400">+88 01710 111111</p>
             </div>
           </div>
-          <div className="flex flex-col justify-center">
-            <img src={email} className="ml-10 h-28 w-28" alt="" />
+          <div className="flex flex-col items-center">
+            <img src={email} className="h-28 w-28" alt="" />
             <div className="text-center">
               <h1 className="text-xl font-bold">Email Me</h1>
               <p className="text-gray-400">drfahad@gmail.com</p>

@@ -19,6 +19,7 @@ const ServiceCard = ({ service }) => {
       </figure> */}
       <div className="card-body">
         <h2 className="card-title">{title}</h2>
+        <div className="badge badge-outline">Price: $</div>
         <p>
           {description.length > 100
             ? description.slice(0, 100) + " ..."

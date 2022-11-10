@@ -26,9 +26,9 @@ export const router = createBrowserRouter([
       {
         path: "/services/:id",
         element: (
-          <PrivateRoutes>
-            <ServiceDetails></ServiceDetails>
-          </PrivateRoutes>
+          //<PrivateRoutes>
+          <ServiceDetails></ServiceDetails>
+          //</PrivateRoutes>
         ),
         loader: ({ params }) =>
           fetch(`https://city-smiles-server.vercel.app/services/${params.id}`),
