@@ -24,7 +24,7 @@ const ServiceDetails = () => {
   //   const sec = newDate.getSeconds();
   //   console.log(newDate.toLocaleString());
   useEffect(() => {
-    fetch(`http://localhost:5000/all-reviews?sId=${_id}`)
+    fetch(`https://city-smiles-server.vercel.app/all-reviews?sId=${_id}`)
       .then((res) => res.json())
       .then((data) => {
         if (data.result) {
@@ -57,7 +57,7 @@ const ServiceDetails = () => {
 
     // console.log(review);
 
-    fetch("http://localhost:5000/reviews", {
+    fetch("https://city-smiles-server.vercel.app/reviews", {
       method: "POST",
       headers: {
         "content-type": "application/json",

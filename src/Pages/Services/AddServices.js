@@ -28,7 +28,7 @@ const AddServices = () => {
 
     // console.log(service);
 
-    fetch("http://localhost:5000/add-services", {
+    fetch("https://city-smiles-server.vercel.app/add-services", {
       method: "POST",
       headers: {
         authorization: `Bearer ${localStorage.getItem("user-token")}`,

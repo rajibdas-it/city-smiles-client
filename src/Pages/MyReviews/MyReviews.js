@@ -6,16 +6,19 @@ import CommentRow from "./CommentRow";
 const MyReviews = () => {
   const { user, logOut } = useContext(AuthContext);
   const [reviews, setReviews] = useState([]);
-  // const url = `http://localhost:5000/reviews?email=${user?.email}`;
+
   // console.log(url);
   // const userToken = localStorage.getItem("user-token");
   // console.log(userToken);
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews?email=${user?.email}`, {
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("user-token")}`,
-      },
-    })
+    fetch(
+      `https://city-smiles-server.vercel.app/reviews?email=${user?.email}`,
+      {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("user-token")}`,
+        },
+      }
+    )
       .then((res) => {
         if (res.status === 401 || res.status === 403) {
           return logOut();
@@ -26,7 +29,7 @@ const MyReviews = () => {
   }, [user?.email, logOut]);
 
   const handleDeleteComment = (id) => {
-    fetch(`http://localhost:5000/reviews/${id}`, {
+    fetch(`https://city-smiles-server.vercel.app/reviews/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `Bearer ${localStorage.getItem("user-token")}`,

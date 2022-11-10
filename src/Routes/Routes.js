@@ -31,14 +31,14 @@ export const router = createBrowserRouter([
           </PrivateRoutes>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/services/${params.id}`),
+          fetch(`https://city-smiles-server.vercel.app/services/${params.id}`),
       },
       { path: "/blogs", element: <Blogs></Blogs> },
       {
         path: "/edit-review/:id",
         element: <UpdateReviews></UpdateReviews>,
         loader: ({ params }) =>
-          fetch(` http://localhost:5000/reviews/${params.id}`),
+          fetch(`https://city-smiles-server.vercel.app/reviews/${params.id}`),
       },
       { path: "/register", element: <Register></Register> },
       { path: "/login", element: <Login></Login> },

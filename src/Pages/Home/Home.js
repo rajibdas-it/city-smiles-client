@@ -17,7 +17,7 @@ const Home = () => {
   const [size, setSize] = useState(3);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/limited-service?size=${size}`)
+    fetch(`https://city-smiles-server.vercel.app/limited-service?size=${size}`)
       .then((res) => res.json())
       .then((data) => setServices(data));
   }, [size]);

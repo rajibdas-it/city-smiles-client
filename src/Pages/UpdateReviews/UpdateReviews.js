@@ -23,7 +23,7 @@ const UpdateReviews = () => {
       phone,
       comment,
     };
-    fetch(`http://localhost:5000/reviews/${_id}`, {
+    fetch(`https://city-smiles-server.vercel.app/reviews/${_id}`, {
       method: "PATCH",
       headers: {
         authorization: `Bearer ${localStorage.getItem("user-token")}`,
