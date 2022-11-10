@@ -3,6 +3,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/UserContext";
 import noimg from "../../assets/imgNotFound.webp";
 import { toast } from "react-toastify";
+import logo from "../../assets/favicon.png";
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -20,7 +21,8 @@ const Header = () => {
 
   return (
     <div className="navbar shadow-lg">
-      <div className="flex-1 ml-3">
+      <div className="flex-1 ml-3 items-center">
+        <img src={logo} className="h-10 w-10" alt="" />
         <Link to="/" className="btn btn-ghost normal-case text-xl">
           <span className="text-blue-400 font-bold text-2xl">City</span>{" "}
           <span className="text-pink-400 font-bold text-2xl">Smiles</span>

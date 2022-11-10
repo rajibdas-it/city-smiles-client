@@ -34,17 +34,32 @@ const Home = () => {
       <div className="my-5">
         <div className="container flex flex-col justify-center p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between">
           <div className="flex flex-col justify-center p-6 text-center rounded-sm lg:max-w-md xl:max-w-lg lg:text-left">
-            <h1 className="text-5xl font-bold">
+            <h1
+              className="text-5xl font-bold"
+              data-aos="fade-up"
+              data-aos-easing="linear"
+              data-aos-duration="2000"
+            >
               <span className="text-blue-400">Say Everything</span> <br />{" "}
               <span className="text-pink-400">with your smile</span>
             </h1>
-            <p className="mt-6 mb-8 text-xl sm:mb-12">
+            <p
+              className="mt-6 mb-8 text-xl sm:mb-12"
+              data-aos="fade-up"
+              data-aos-easing="linear"
+              data-aos-duration="2000"
+            >
               <span>Welcome to City Smiles a private chamber of </span> <br />
               <span className="text-blue-400 font-bold">
                 Dr. Md. Fahad Bin Alam
               </span>{" "}
             </p>
-            <div className="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
+            <div
+              className="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start"
+              data-aos="fade-up"
+              data-aos-easing="linear"
+              data-aos-duration="2000"
+            >
               <Link to="/services">
                 <button className="btn btn-wide bg-blue-400 border-none text-white px-8 py-3 text-lg font-semibold rounded hover:bg-gradient-to-r from-blue-400 to-pink-400">
                   My Services<FaArrowRight></FaArrowRight>
@@ -82,7 +97,12 @@ const Home = () => {
       </div>
       {/* service section end */}
       {/* appointment form start */}
-      <div className="mt-10 shadow-lg rounded p-6 bg-gradient-to-tl from-white to-pink-400">
+      <div
+        className="mt-10 shadow-lg rounded p-6 bg-gradient-to-tl from-white to-pink-400"
+        data-aos="fade-up"
+        data-aos-easing="linear"
+        data-aos-duration="2000"
+      >
         <div className="flex justify-around items-center flex-col lg:flex-row-reverse">
           <div>
             <img src={appointment} alt="" className="h-[500px]" />
@@ -130,7 +150,12 @@ const Home = () => {
       {/* appointment form end */}
 
       {/* emergency contact start */}
-      <div className="w-[90%] mx-auto my-20 rounded-md bg-white">
+      <div
+        className="w-[90%] mx-auto my-20 rounded-md bg-white"
+        data-aos="flip-left"
+        data-aos-easing="ease-out-cubic"
+        data-aos-duration="3000"
+      >
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 p-10 ">
           <div className="flex flex-col items-center shadow-md p-4 rounded">
             <div>
