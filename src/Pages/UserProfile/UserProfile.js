@@ -1,8 +1,10 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../Context/UserContext";
+import useTitle from "../../hooks/useTitle";
 
 const UserProfile = () => {
   const { user } = useContext(AuthContext);
+  useTitle(`Profile of ${user.displayName}`);
   return (
     <div>
       <div className="flex flex-col min-h-screen justify-center p-6 shadow-md rounded-xl sm:px-12 dark:bg-gray-900 dark:text-gray-100">

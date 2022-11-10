@@ -3,8 +3,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../Context/UserContext";
 import Swal from "sweetalert2";
+import useTitle from "../../hooks/useTitle";
 
 const Register = () => {
+  useTitle("Register");
   const { createUser, googleSignIn, updateUserProfile } =
     useContext(AuthContext);
   const [loading, setLoading] = useState(false);
@@ -180,7 +182,7 @@ const Register = () => {
               </div>
             </form>
             <div className="">
-              <p className="px-3 text-sm text-center  text-white bg-gradient-to-tr from-blue-400 to bg-pink-400 mb-2">
+              <p className="px-3 text-sm text-center mb-2">
                 Sign Up With Google
               </p>
             </div>

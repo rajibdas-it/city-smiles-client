@@ -2,10 +2,12 @@ import React, { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../Context/UserContext";
 import Swal from "sweetalert2";
+import useTitle from "../../hooks/useTitle";
 
 const PasswordReset = () => {
   const { passwordReset } = useContext(AuthContext);
   const [errorMsg, setErrorMsg] = useState("");
+  useTitle("Reset Password");
 
   const handleResetPassword = (event) => {
     event.preventDefault();

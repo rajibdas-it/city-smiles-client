@@ -3,8 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import moment from "moment/moment";
 import { AuthContext } from "../../Context/UserContext";
+import useTitle from "../../hooks/useTitle";
 
 const AddServices = () => {
+  useTitle("Add New Service");
   const { logOut } = useContext(AuthContext);
   const currentDate = moment().format("MMMM Do YYYY, h:mm:ss a");
 
@@ -50,7 +52,12 @@ const AddServices = () => {
   };
   return (
     <div>
-      <h1 className="text-center mt-12">Add New Service</h1>
+      <div className="mb-12 flex justify-center items-center h-40 bg-gradient-to-tr from-blue-400 to-pink-400">
+        <p className="text-4xl font-bold text-white text-center capitalize">
+          Add New Service
+        </p>
+      </div>
+      {/* <h1 className="text-center mt-12">Add New Service</h1> */}
       <div className="my-12 w-[80%] mx-auto flex justify-center">
         <div className="card card-compact w-full bg-base-100 shadow-xl">
           <form onSubmit={handleAddServices} className="card-body">

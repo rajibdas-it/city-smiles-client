@@ -39,11 +39,10 @@ const Home = () => {
               <span className="text-pink-400">with your smile</span>
             </h1>
             <p className="mt-6 mb-8 text-xl sm:mb-12">
-              Welcome to{" "}
+              <span>Welcome to City Smiles a private chamber of </span> <br />
               <span className="text-blue-400 font-bold">
                 Dr. Md. Fahad Bin Alam
               </span>{" "}
-              Website
             </p>
             <div className="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
               <Link to="/services">
@@ -83,7 +82,7 @@ const Home = () => {
       </div>
       {/* service section end */}
       {/* appointment form start */}
-      <div className=" mt-2">
+      <div className="mt-10 shadow-lg rounded p-6 bg-gradient-to-tl from-white to-pink-400">
         <div className="flex justify-around items-center flex-col lg:flex-row-reverse">
           <div>
             <img src={appointment} alt="" className="h-[500px]" />
@@ -131,9 +130,9 @@ const Home = () => {
       {/* appointment form end */}
 
       {/* emergency contact start */}
-      <div className="w-[90%] mx-auto mb-20 mt-1">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 p-10">
-          <div className="flex flex-col items-center">
+      <div className="w-[90%] mx-auto my-20 rounded-md bg-white">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 p-10 ">
+          <div className="flex flex-col items-center shadow-md p-4 rounded">
             <div>
               <img src={emergencyphone} className="h-28 w-28" alt="" />
             </div>
@@ -143,7 +142,7 @@ const Home = () => {
               <p className="text-gray-400">Call me Anytime 24/7</p>
             </div>
           </div>
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center shadow-md p-4 rounded">
             <img src={address} className="h-28 w-28" alt="" />
             <div className="text-center">
               <h1 className="text-xl font-bold">Address</h1>
@@ -151,7 +150,7 @@ const Home = () => {
               <p className="text-gray-400">Dhaka, Bangladesh</p>
             </div>
           </div>
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center shadow-md p-4 rounded">
             <img src={booking} className="h-28 w-28" alt="" />
             <div className="text-center">
               <h1 className="text-xl font-bold">Booking By Phone</h1>
@@ -159,7 +158,7 @@ const Home = () => {
               <p className="text-gray-400">+88 01710 111111</p>
             </div>
           </div>
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center shadow-md p-4 rounded">
             <img src={email} className="h-28 w-28" alt="" />
             <div className="text-center">
               <h1 className="text-xl font-bold">Email Me</h1>

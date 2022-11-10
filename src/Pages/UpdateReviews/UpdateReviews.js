@@ -2,8 +2,10 @@ import React, { useContext } from "react";
 import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../Context/UserContext";
+import useTitle from "../../hooks/useTitle";
 
 const UpdateReviews = () => {
+  useTitle("Update Review");
   const { logOut } = useContext(AuthContext);
   const review = useLoaderData();
   const navigate = useNavigate();
@@ -46,8 +48,15 @@ const UpdateReviews = () => {
       });
   };
   return (
-    <div>
-      <h1 className="text-center mt-12">Review Update Page</h1>
+    <div className="min-h-screen">
+      <div className="mb-12 flex justify-center items-center h-40 bg-gradient-to-tr from-blue-400 to-pink-400">
+        <p className="text-4xl font-bold text-white text-center">
+          Update Review
+        </p>
+      </div>
+      {/* <h1 className="text-center mt-12 text-4xl font-bold text-blue-400">
+        Update Review
+      </h1> */}
       <div className="my-12 w-[80%] mx-auto flex justify-center">
         <div className="card card-compact w-full bg-base-100 shadow-xl">
           <form onSubmit={handleUpdateComment} className="card-body">
@@ -76,7 +85,7 @@ const UpdateReviews = () => {
 
             <div className="card-actions justify-center md:justify-end">
               <button className="btn btn-primary border-none rounded text-white bg-blue-400 hover:bg-gradient-to-r from-blue-400 to-pink-400 hover:border-none">
-                Update Comment
+                Update Review
               </button>
             </div>
           </form>

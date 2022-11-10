@@ -25,7 +25,7 @@ const ErrorPage = () => {
 
       <div className="text-center mt-5">
         <Link to="/">
-          <button className="btn btn-primary capitalize bg-gradient-to-tr from-purple-400 to-blue-400 text-white border-none hover:from-blue-400">
+          <button className="btn btn-primary capitalize bg-gradient-to-tr from-purple-400 to-blue-400 text-white border-none">
             Back To Home Page
           </button>
         </Link>

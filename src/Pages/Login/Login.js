@@ -2,9 +2,11 @@ import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../Context/UserContext";
+import useTitle from "../../hooks/useTitle";
 
 const Login = () => {
   const { userLogin, googleSignIn } = useContext(AuthContext);
+  useTitle("Login");
   const [errorMsg, setErrorMsg] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -145,7 +147,7 @@ const Login = () => {
               </div>
             </form>
             <div className="mb-2">
-              <p className="px-3 text-sm text-center  text-white bg-gradient-to-tr from-blue-400 to bg-pink-400 mb-2">
+              <p className="px-3 text-sm text-center    mb-2">
                 Sign In With Google
               </p>
             </div>
