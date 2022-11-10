@@ -6,12 +6,14 @@ import { AuthContext } from "../../Context/UserContext";
 const Login = () => {
   const { userLogin, googleSignIn } = useContext(AuthContext);
   const [errorMsg, setErrorMsg] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
   const handleSignIn = (event) => {
     event.preventDefault();
+    setLoading(true);
     setErrorMsg("");
     const form = event.target;
     const email = form.email.value;
@@ -19,6 +21,7 @@ const Login = () => {
     userLogin(email, password)
       .then((result) => {
         const user = result.user;
+
         // console.log(user);
         // form.reset();
         // navigate(from, { replace: true });
@@ -39,12 +42,14 @@ const Login = () => {
           .then((data) => {
             // const token = data.token;
             localStorage.setItem("user-token", data.token);
+            setLoading(false);
             // form.reset();
             navigate(from, { replace: true });
           });
       })
       .catch((error) => {
         setErrorMsg(error.message);
+        setLoading(false);
         // toast.error(error.message, { autoClose: 1500 });
       });
   };
@@ -64,6 +69,12 @@ const Login = () => {
 
   return (
     <div className="mt-20">
+      {loading && (
+        <div className="flex flex-col justify-center items-center h-96 w-[90%]">
+          <div className="w-28 h-28 border-8 border-blue-500 border-dotted rounded-full animate-spin"></div>
+          <p className="text-2xl font-bold text-pink-400">Loading ...</p>
+        </div>
+      )}
       <div className="min-h-screen lg:w-[50%] mx-auto">
         <div className="hero-content flex-col ">
           <div className="text-center lg:text-left">

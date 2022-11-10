@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 const Register = () => {
   const { createUser, googleSignIn, updateUserProfile } =
     useContext(AuthContext);
-
+  const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
   const navigate = useNavigate();
@@ -15,6 +15,7 @@ const Register = () => {
   const handleRegister = (event) => {
     event.preventDefault();
     setErrorMsg("");
+    setLoading(true);
 
     const form = event.target;
 
@@ -29,6 +30,7 @@ const Register = () => {
           const user = result.user;
           form.reset();
           handleUpdateUserProfile(fullName, photoURL);
+          setLoading(false);
           navigate("/");
           toast.success("Account Created Successfully.", { autoClose: 1500 });
           // toast.success("Right Answer", { autoClose: 500 });
@@ -36,10 +38,12 @@ const Register = () => {
         })
         .catch((error) => {
           setErrorMsg(error.message);
+          setLoading(false);
           // toast.error(error.message, { autoClose: 1500 });
         });
     } else {
       setErrorMsg("Password and Confirm Password Not Matched");
+      setLoading(false);
       // toast.error("Password and Confirm doesn't match", { autoClose: 1500 });
     }
     // console.log(email, password, confirmPassword);
@@ -73,6 +77,12 @@ const Register = () => {
   return (
     <div>
       {/* <div className="hero bg-base-200"> */}
+      {loading && (
+        <div className="flex flex-col justify-center items-center h-96 w-[90%]">
+          <div className="w-28 h-28 border-8 border-blue-500 border-dotted rounded-full animate-spin"></div>
+          <p className="text-2xl font-bold text-pink-400">Loading ...</p>
+        </div>
+      )}
       <div className="min-h-screen lg:w-[50%] mx-auto">
         <div className="hero-content flex-col ">
           <div className="text-center lg:text-left">
