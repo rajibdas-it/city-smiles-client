@@ -4,7 +4,8 @@ import { PhotoProvider, PhotoView } from "react-photo-view";
 import "react-photo-view/dist/react-photo-view.css";
 
 const ServiceCard = ({ service }) => {
-  const { _id, title, image, description } = service;
+  const { _id, title, image, description, price } = service;
+  // console.log(service);
   return (
     <div className="card w-full bg-base-100 shadow-xl">
       <figure>
@@ -19,7 +20,7 @@ const ServiceCard = ({ service }) => {
       </figure> */}
       <div className="card-body">
         <h2 className="card-title">{title}</h2>
-        <div className="badge badge-outline">Price: $</div>
+        <div className="badge badge-outline font-semibold">Price: ${price}</div>
         <p>
           {description.length > 100
             ? description.slice(0, 100) + " ..."
@@ -28,7 +29,7 @@ const ServiceCard = ({ service }) => {
         <div className="card-actions justify-end">
           <Link to={`/services/${_id}`}>
             <button className="btn btn-primary border-none rounded text-white bg-blue-400 hover:bg-gradient-to-r from-blue-400 to-pink-400 hover:border-none">
-              Read More
+              View Details
             </button>
           </Link>
         </div>

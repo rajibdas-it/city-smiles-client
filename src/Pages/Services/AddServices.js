@@ -9,6 +9,7 @@ const AddServices = () => {
   useTitle("Add New Service");
   const { logOut } = useContext(AuthContext);
   const currentDate = moment().format("MMMM Do YYYY, h:mm:ss a");
+  const navigate = useNavigate();
 
   const handleAddServices = (event) => {
     event.preventDefault();
@@ -47,6 +48,8 @@ const AddServices = () => {
       .then((data) => {
         if (data.acknowledged) {
           toast.success("Added New Services", { autoClose: 1000 });
+          form.reset();
+          // navigate("/services");
         }
       });
   };

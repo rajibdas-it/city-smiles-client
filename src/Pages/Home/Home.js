@@ -82,7 +82,15 @@ const Home = () => {
             <p className="text-2xl font-bold text-pink-400">Loading ...</p>
           </div>
         )}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <h1 className="text-center my-5 text-4xl font-bold text-blue-400">
+          My Services
+        </h1>
+        <div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+          data-aos="flip-left"
+          data-aos-easing="ease-out-cubic"
+          data-aos-duration="2000"
+        >
           {services.map((service) => (
             <ServiceCard key={service._id} service={service}></ServiceCard>
           ))}
