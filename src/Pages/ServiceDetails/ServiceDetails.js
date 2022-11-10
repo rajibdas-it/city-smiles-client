@@ -80,10 +80,10 @@ const ServiceDetails = () => {
     <div className="w-[90%] mx-auto">
       <div className="flex w-full bg-gradient-to-tr from-blue-400 to-pink-400 rounded-md  h-40 justify-center items-center my-5">
         <h1 className="font-bold text-2xl md:text-3xl text-white text-center">
-          Service Details page of {title}
+          Service Details of {title}
         </h1>
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
+      <div className="grid grid-cols-1  gap-4">
         <div className="lg:col-span-7">
           <div className="card card-compact w-full bg-base-100 rounded-none">
             <figure className="rounded-none h-1/3">
