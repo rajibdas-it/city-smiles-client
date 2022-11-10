@@ -55,7 +55,7 @@ const ServiceDetails = () => {
       serviceName: title,
     };
 
-    console.log(review);
+    // console.log(review);
 
     fetch("http://localhost:5000/reviews", {
       method: "POST",

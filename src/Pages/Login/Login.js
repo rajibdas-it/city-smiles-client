@@ -26,6 +26,8 @@ const Login = () => {
           email: user.email,
         };
 
+        // console.log(currentUser);
+
         fetch("http://localhost:5000/jwt", {
           method: "POST",
           headers: {
@@ -35,9 +37,9 @@ const Login = () => {
         })
           .then((res) => res.json())
           .then((data) => {
-            const token = data.token;
-            localStorage.setItem("user-token", token);
-            form.reset();
+            // const token = data.token;
+            localStorage.setItem("user-token", data.token);
+            // form.reset();
             navigate(from, { replace: true });
           });
       })

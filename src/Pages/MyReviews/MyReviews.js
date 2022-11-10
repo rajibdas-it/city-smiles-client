@@ -4,21 +4,26 @@ import { AuthContext } from "../../Context/UserContext";
 import CommentRow from "./CommentRow";
 
 const MyReviews = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   const [reviews, setReviews] = useState([]);
   // const url = `http://localhost:5000/reviews?email=${user?.email}`;
   // console.log(url);
-  const userToken = localStorage.getItem("user-token");
-  console.log(userToken);
+  // const userToken = localStorage.getItem("user-token");
+  // console.log(userToken);
   useEffect(() => {
     fetch(`http://localhost:5000/reviews?email=${user?.email}`, {
       headers: {
-        authorization: `Bearer ${userToken}`,
+        authorization: `Bearer ${localStorage.getItem("user-token")}`,
       },
     })
-      .then((res) => res.json())
-      .then((data) => console.log(data));
-  }, [user?.email]);
+      .then((res) => {
+        if (res.status === 401 || res.status === 403) {
+          return logOut();
+        }
+        return res.json();
+      })
+      .then((data) => setReviews(data));
+  }, [user?.email, logOut]);
 
   const handleDeleteComment = (id) => {
     fetch(`http://localhost:5000/reviews/${id}`, {
