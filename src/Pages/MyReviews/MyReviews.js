@@ -28,8 +28,16 @@ const MyReviews = () => {
   const handleDeleteComment = (id) => {
     fetch(`http://localhost:5000/reviews/${id}`, {
       method: "DELETE",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("user-token")}`,
+      },
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.status === 401 || res.status === 403) {
+          return logOut();
+        }
+        return res.json();
+      })
       .then((data) => {
         if (data.deletedCount > 0) {
           toast.success("Comment Deleted", { autoClose: 1000 });

@@ -1,10 +1,13 @@
-import React from "react";
-import { useLoaderData, useNavigate } from "react-router-dom";
+import React, { useContext } from "react";
+import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { AuthContext } from "../../Context/UserContext";
 
 const UpdateReviews = () => {
+  const { logOut } = useContext(AuthContext);
   const review = useLoaderData();
   const navigate = useNavigate();
+
   const { _id, comment, ratings, phone } = review;
   //   console.log(review);
 
@@ -23,11 +26,18 @@ const UpdateReviews = () => {
     fetch(`http://localhost:5000/reviews/${_id}`, {
       method: "PATCH",
       headers: {
+        authorization: `Bearer ${localStorage.getItem("user-token")}`,
         "content-type": "application/json",
       },
       body: JSON.stringify(review),
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.status === 401 || res.status === 403) {
+          navigate("/login");
+          return logOut();
+        }
+        return res.json();
+      })
       .then((data) => {
         if (data.modifiedCount > 0) {
           toast.success("Review updated.", { autoClose: 1000 });

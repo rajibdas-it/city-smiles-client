@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import moment from "moment/moment";
+import { AuthContext } from "../../Context/UserContext";
 
 const AddServices = () => {
+  const { logOut } = useContext(AuthContext);
   const currentDate = moment().format("MMMM Do YYYY, h:mm:ss a");
 
   const handleAddServices = (event) => {
@@ -29,11 +31,17 @@ const AddServices = () => {
     fetch("http://localhost:5000/add-services", {
       method: "POST",
       headers: {
+        authorization: `Bearer ${localStorage.getItem("user-token")}`,
         "content-type": "application/json",
       },
       body: JSON.stringify(service),
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.status === 401 || res.status === 403) {
+          return logOut();
+        }
+        return res.json();
+      })
       .then((data) => {
         if (data.acknowledged) {
           toast.success("Added New Services", { autoClose: 1000 });
