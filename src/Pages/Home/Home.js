@@ -7,6 +7,10 @@ import booking from "../../assets/homecontact/bookByPhone.png";
 import email from "../../assets/homecontact/emailUs.png";
 import { FaArrowRight } from "react-icons/fa";
 import ServiceCard from "../Shared/ServiceCard/ServiceCard";
+import { PhotoProvider, PhotoView } from "react-photo-view";
+import "react-photo-view/dist/react-photo-view.css";
+
+import oneImg from "../../assets/services/1.png";
 
 const Home = () => {
   const [services, setServices] = useState([]);
@@ -67,6 +71,11 @@ const Home = () => {
       </div>
       {/* service section end */}
       {/* appointment form start */}
+      {/* <PhotoProvider>
+        <PhotoView src={oneImg}>
+          <img src={oneImg} alt="" className="h-96" />
+        </PhotoView>
+      </PhotoProvider> */}
 
       {/* appointment form end */}
 
