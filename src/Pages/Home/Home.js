@@ -11,11 +11,13 @@ import { PhotoProvider, PhotoView } from "react-photo-view";
 import "react-photo-view/dist/react-photo-view.css";
 import oneImg from "../../assets/services/1.png";
 import appointment from "../../assets/appointment2.gif";
+import useTitle from "../../hooks/useTitle";
 
 const Home = () => {
   const [services, setServices] = useState([]);
   const [size, setSize] = useState(3);
   const [loading, setLoading] = useState(true);
+  useTitle("Home");
 
   useEffect(() => {
     fetch(`https://city-smiles-server.vercel.app/limited-service?size=${size}`)
